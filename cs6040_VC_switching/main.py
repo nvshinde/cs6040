@@ -46,19 +46,16 @@ class Exercise:
         # plt.show()
     
     def build_routing_table(self) -> None:
-        if self.flag == "hop":
-            open(self.rt_file, 'w').close()
-            for node in self.nw.nodes:
-                paths = self.get_paths(src_node=node)
-                with open(self.rt_file, 'a') as f:
-                    f.write(f"--X-- Routing table for Node: {node} --X--\n")
-                    for dst_node in paths.keys():
-                        f.write(f"{dst_node} {str(paths[dst_node][0]['path'])}  {paths[dst_node][0]['delay']} {paths[dst_node][0]['cost']} \n")
-                        f.write(f"{dst_node} {str(paths[dst_node][1]['path'])}  {paths[dst_node][1]['delay']} {paths[dst_node][1]['cost']} \n")
-                    f.write("\n\n")
+        open(self.rt_file, 'w').close()
+        for node in self.nw.nodes:
+            paths = self.get_paths(src_node=node)
+            with open(self.rt_file, 'a') as f:
+                f.write(f"--X-- Routing table for Node: {node} --X--\n")
+                for dst_node in paths.keys():
+                    f.write(f"{dst_node} {str(paths[dst_node][0]['path'])}  {paths[dst_node][0]['delay']} {paths[dst_node][0]['cost']} \n")
+                    f.write(f"{dst_node} {str(paths[dst_node][1]['path'])}  {paths[dst_node][1]['delay']} {paths[dst_node][1]['cost']} \n")
+                f.write("\n\n")
 
-        if self.flag == "dist":
-            pass
     
     def process_connections(self) -> None:
         pass
@@ -82,7 +79,7 @@ class Exercise:
             # path2 = self.get_shortest_path(nw_copy, src_node=src_node, dst_node=node)
             
             # Yen's algorithm
-            path1, path2 = self.yenKSP(nw=nw_copy, src=src_node, dst=node, k=2)
+            path1, path2 = self.yenKSP(nw=nw_copy, src=src_node, dst=node, K=2)
 
             paths[node][0]['path'] = path1
             paths[node][1]['path'] = path2
@@ -94,18 +91,58 @@ class Exercise:
             paths[node][1]['cost'] = self.calculate_cost(path2)
         return paths
 
-    def yenKSP(self, nw, src, dst, K):
-        A = [[]] * K    # shortest paths
-        B = []          # potential kth shortest path
+    def yenKSP(self, nw, src, dst, K=1):
+        """
+        K hardcoded now
+        """
+        paths = [[]] * K
+        lens = [-1] * K
+        if self.flag == "hop":
+            if src == dst:
+                return [src, dst], [src, dst] 
+            
+            lens[0], paths[0] = nx.single_source_dijkstra(nw, src, dst)
+            # print(f"s: {src}, d: {dst}, len: {len1}, path: {path1}")
+            B = []
+
+            for k in range(1, K):
+                for i in range(0, len(paths[-1])-1):
+                    spur_node = paths[-1][i]
+                    root_path = paths[-1][0: i+1]
+
+                    for p in paths:
+                        if len(p) > i and root_path == p[0: i+1]:
+                            u = p[i]
+                            v = p[i]
+                            if nw.has_edge(u, v):
+                                nw.remove_edge(u, v)
+                    
+                    for n in range(len(root_path) - 1):
+                        node = root_path[n]
+                        for u, v in nw.edges(node):
+                            nw.remove_edge(u, v)
+                            nw.remove_edge(v, u)
+                        
+                        if nw.is_directed():
+                            for u, v in nw.in_edges:
+                                pass
+                    
+
+        if self.flag == "dist":
+            pass
+
+        # A = [[]] * K    # shortest paths
+        # B = []          # potential kth shortest path
         
-        # First shortest path from src to dst
-        A[0] = self.dijkstras(nw=nw, src_node=src, dst_node=dst)
+        # # First shortest path from src to dst
+        # A[0] = self.dijkstras(nw=nw, src_node=src, dst_node=dst)
 
-        for k in range(1, K):
-            for i in range(0, len(A[k-1]) - 2):
-                pass
+        # for k in range(1, K):
+        #     for i in range(0, len(A[k-1]) - 2):
+        #         pass
 
-        return A[0], A[1]
+        # return A[0], A[1]
+        return None, None
 
     def dijkstras(self, nw=None, src_node=None, dst_node=None) -> None:
         # dijkstra's
