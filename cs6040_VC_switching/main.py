@@ -4,6 +4,8 @@ import os
 import argparse
 import networkx as nx
 import matplotlib.pyplot as plt
+from itertools import count
+import heapq
 import copy
 
 class Router:
@@ -68,103 +70,106 @@ class Exercise:
         """
 
         for node in self.nw.nodes:
-            nw_copy = nx.DiGraph()
-            for u, v, weights in self.nw.edges(data=True):
-                nw_copy.add_edge(u, v, delay=weights['delay'], cap=weights['cap'])
-                nw_copy.add_edge(v, u, delay=weights['delay'], cap=weights['cap'])
-
-            # Suurballe's algorithm
-            # path1 = self.get_shortest_path(nw_copy, src_node=src_node, dst_node=node)
-            # self.modify_network(nw_copy)
-            # path2 = self.get_shortest_path(nw_copy, src_node=src_node, dst_node=node)
+            nw_copy = copy.deepcopy(self.nw)
             
             # Yen's algorithm
             path1, path2 = self.yenKSP(nw=nw_copy, src=src_node, dst=node, K=2)
 
-            paths[node][0]['path'] = path1
-            paths[node][1]['path'] = path2
+            if path1 == None:
+                paths[node][0]['path'] = [node]
+                paths[node][1]['path'] = [node]
 
-            paths[node][0]['delay'] = self.calculate_delay(path1)
-            paths[node][1]['delay'] = self.calculate_delay(path2)
+                paths[node][0]['delay'] = 0
+                paths[node][1]['delay'] = 0
 
-            paths[node][0]['cost'] = self.calculate_cost(path1)
-            paths[node][1]['cost'] = self.calculate_cost(path2)
+                paths[node][0]['cost'] = 0
+                paths[node][1]['cost'] = 0
+            else:
+                paths[node][0]['path'] = path1
+                paths[node][1]['path'] = path2
+
+                paths[node][0]['delay'] = self.calculate_delay(path1)
+                paths[node][1]['delay'] = self.calculate_delay(path2)
+
+                paths[node][0]['cost'] = self.calculate_cost(path1)
+                paths[node][1]['cost'] = self.calculate_cost(path2)
         return paths
 
     def yenKSP(self, nw, src, dst, K=1):
         """
         K hardcoded now
         """
-        paths = [[]] * K
-        lens = [-1] * K
+        paths = []
+        lens = []
+        counter = count()
+        potential_paths = []
+
         if self.flag == "hop":
             if src == dst:
-                return [src, dst], [src, dst] 
+                return None, None 
             
-            lens[0], paths[0] = nx.single_source_dijkstra(nw, src, dst)
-            # print(f"s: {src}, d: {dst}, len: {len1}, path: {path1}")
-            B = []
+            l, p = nx.single_source_dijkstra(nw, src, dst)
+            paths.append(p)
+            lens.append(l)
+    
+            # print(f"s: {src}, d: {dst}, len: {l}, path: {p}")
 
             for k in range(1, K):
                 for i in range(0, len(paths[-1])-1):
+                    root_path = paths[-1][0 : i+1]
                     spur_node = paths[-1][i]
-                    root_path = paths[-1][0: i+1]
+
 
                     for p in paths:
-                        if len(p) > i and root_path == p[0: i+1]:
-                            u = p[i]
-                            v = p[i]
-                            if nw.has_edge(u, v):
-                                nw.remove_edge(u, v)
+                        if len(p) > i and root_path == p[0 : i+1]:
+                            if nw.has_edge(p[i], p[i+1]):
+                                nw.remove_edge(p[i], p[i+1])
                     
                     for n in range(len(root_path) - 1):
                         node = root_path[n]
-                        for u, v in nw.edges(node):
+                        for u, v in list(nw.edges(node)):
                             nw.remove_edge(u, v)
-                            nw.remove_edge(v, u)
-                        
-                        if nw.is_directed():
-                            for u, v in nw.in_edges:
-                                pass
-                    
+                       
+                    spur_path_len, spur_path = nx.single_source_dijkstra(nw, spur_node, dst)
+                    if dst in spur_path:
+                        total_path = root_path[:-1] + spur_path
+                        total_path_len = self.get_path_len(root_path) + spur_path_len
+                        heapq.heappush(potential_paths, (total_path_len, next(counter), total_path))
+            # print(potential_paths)
+            if potential_paths:
+                l, _, p = heapq.heappop(potential_paths)
+                lens.append(l)
+                paths.append(p)
 
         if self.flag == "dist":
             pass
 
-        # A = [[]] * K    # shortest paths
-        # B = []          # potential kth shortest path
-        
-        # # First shortest path from src to dst
-        # A[0] = self.dijkstras(nw=nw, src_node=src, dst_node=dst)
+        return paths[0], paths[1]
+    
 
-        # for k in range(1, K):
-        #     for i in range(0, len(A[k-1]) - 2):
-        #         pass
-
-        # return A[0], A[1]
-        return None, None
-
-    def dijkstras(self, nw=None, src_node=None, dst_node=None) -> None:
-        # dijkstra's
-        dist = []
-        path = []
-        num_nodes = len(nw.nodes())
-        visited_nodes = {src_node: 0}
-        nodes = list(nw.nodes())
-
-
-        return path
-
-    def modify_network(self, nw) -> None:
-        pass
+    def get_path_len(self, path):
+        length = 0
+        if len(path) > 1:
+            for i in range(len(path) - 1):
+                length += 1
+        return length
 
     def calculate_delay(self, path) -> None:
+        # print("path", path)
         delay = 0
+        for i in range(len(path) - 1):
+            u = path[i]
+            v = path[i+1]
+            # print("del:", self.nw.get_edge_data(u, v, default=0))
+            delay += self.nw.get_edge_data(u, v, default={'delay': 0, 'cap': 0})['delay']
         return delay
 
     def calculate_cost(self, path) -> None:
         cost = 0
-        return cost
+        
+        # for i in range(len(path) - 1):
+            
+        return len(path) - 1
 
 
 if __name__ == "__main__":
