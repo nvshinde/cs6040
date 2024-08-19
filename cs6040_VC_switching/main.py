@@ -8,6 +8,7 @@ from itertools import count
 import heapq
 import copy
 import pprint
+import random
 
 class Router:
     def __init__(self) -> None:
@@ -49,7 +50,7 @@ class Exercise:
         # plt.show()
 
         self.build_routing_table()
-        
+        self.forwarding_table = {node: {} for node in range(num_nodes)}
         # Read connection requests
         with open(self.conn_file, 'r') as f:
             num_connections = int(f.readline().strip())
@@ -65,7 +66,9 @@ class Exercise:
         # pprint.pprint(self.connection_requests)
 
         self.process_connections()
-        print(self.nw.edges(data=True))
+        # print(self.nw.edges(data=True))
+        pprint.pprint(self.paths_table)
+        pprint.pprint(self.forwarding_table)
     
     def build_routing_table(self) -> None:
         open(self.rt_file, 'w').close()
@@ -138,11 +141,17 @@ class Exercise:
             return None, None
          
         if self.flag == "hop":
-            l, p = nx.single_source_dijkstra(nw, src, dst)
+            try:
+                l, p = nx.single_source_dijkstra(nw, src, dst)
+            except:
+                return
         
         if self.flag == "dist":
-            l, p = nx.single_source_dijkstra(nw, src, dst, weight='delay')
-        
+            try:
+                l, p = nx.single_source_dijkstra(nw, src, dst, weight='delay')
+            except:
+                return
+            
         paths.append(p)
         lens.append(l)
     
@@ -281,7 +290,52 @@ class Exercise:
                 else:
                     """setup the connection vcids"""
 
-                    pass
+                    vcids_conn_i = {} # {node: {vcid_in, vcid_out}}
+                    vcid_list = []
+                    for i, node in enumerate(conn_i_admit_path):
+                        # skip src and dst
+                        if i == 0:
+                            # src node only has vcid_out
+                            vcid_out = self.get_new_vcid(node=node, flag="out")
+                            vcids_conn_i[node] = {'vcid_in': -1, 'vcid_out': vcid_out}
+                            self.forwarding_table[node][conn_i] = {'nid_in': -1, 
+                                                                   'vcid_in': -1, 
+                                                                   'nid_out': conn_i_admit_path[i+1],
+                                                                   'vcid_out': vcid_out}
+                            vcid_list.append(vcid_out)
+                        elif i == len(conn_i_admit_path) - 1:
+                            # dst node only has vcid_in
+                            vcid_in = vcids_conn_i[conn_i_admit_path[i-1]]['vcid_out']
+                            vcids_conn_i[node] =  {'vcid_in': vcid_in, 'vcid_out': -1}
+                            self.forwarding_table[node][conn_i] = {'nid_in': conn_i_admit_path[i-1], 
+                                                                   'vcid_in': vcid_in, 
+                                                                   'nid_out': -1,
+                                                                   'vcid_out': -1}
+                        else:
+                            # for all other nodes                         
+                            vcid_in = vcids_conn_i[conn_i_admit_path[i-1]]['vcid_out']
+                            vcid_out = self.get_new_vcid(node=node, flag="out")
+
+                            vcids_conn_i[node] = {'vcid_in': vcid_in, 'vcid_out': vcid_out}
+                            self.forwarding_table[node][conn_i] = {'nid_in': conn_i_admit_path[i-1], 
+                                                                   'vcid_in': vcid_in, 
+                                                                   'nid_out': conn_i_admit_path[i+1],
+                                                                   'vcid_out': vcid_out}
+                    
+                            vcid_list.append(vcid_out)
+
+                    if conn_i_admit_path in self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path1'].values():
+                        cost = self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path1']['cost']
+                    else:
+                        cost = self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path2']['cost']
+
+                    self.paths_table[conn_i] = {
+                                                'src': conn_i_data['src'],
+                                                'dst': conn_i_data['dst'],
+                                                'path': conn_i_admit_path,
+                                                'vcids': vcid_list,
+                                                'cost': cost
+                                                }
 
                 # print(self.nw.edges(data=True))
 
@@ -342,15 +396,70 @@ class Exercise:
                     print(f"{conn_i} not admitted on any path")
                 else:
                     """setup the connection vcids"""
-                    pass
+                    if conn_i_admit_path in self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path1'].values():
+                        cost = self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path1']['cost']
+                    else:
+                        cost = self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path2']['cost']
+
+                    self.paths_table[conn_i] = {
+                                                'src': conn_i_data['src'],
+                                                'dst': conn_i_data['dst'],
+                                                'path': conn_i_admit_path,
+                                                'vcids': [],
+                                                'cost': cost
+                                                }
 
                 # print(self.nw.edges(data=True)) 
         
         else:
             print("Approach flag 'p' is incorrect. Specify {0, 1}")
 
-if __name__ == "__main__":
+    def get_new_vcid(self, node, flag):
+        """
+                            while True:
+                                uniqvcid = 0
+                                vcid_in = random.randint(0, 1e7)
+                                for conn, _ in self.forwarding_table[node]:
+                                    if vcid_in != self.forwarding_table[node][conn]['vcid_in']:
+                                        uniqvcid = 1
+                                        break
+                                if uniqvcid:
+                                    break
+                            
+                            while True:
+                                uniq = 0
+                                vcid_out = random.randint(0, 1e7)
+                                for conn, _ in self.forwarding_table[node]:
+                                    if vcid_out != self.forwarding_table[node]['vcid_out']:
+                                        uniq = 1
+                                        break
+                                if uniq:
+                                    break
+                            """
+        
+        vcid = random.randint(0, 1e7)
+        if node not in self.forwarding_table.keys():
+            return vcid
+        
+        if flag == "in":
+            for conn, _ in self.forwarding_table[node]:
+                if vcid == self.forwarding_table[node][conn]['vcid_in']:
+                    vcid = random.randint(0, 1e7)
+                else:
+                    continue
     
+        if flag == "out":
+            for conn, _ in self.forwarding_table[node]:
+                if vcid == self.forwarding_table[node][conn]['vcid_out']:
+                    vcid = random.randint(0, 1e7)
+                else:
+                    continue
+        
+        return vcid
+
+if __name__ == "__main__":
+
+    random.seed(0)
     parser = argparse.ArgumentParser(prog="Virtual Circuit Switching", 
                                      description="Simulates VC switching")
     

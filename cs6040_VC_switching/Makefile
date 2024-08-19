@@ -30,15 +30,15 @@ endif
 # flag
 FLAG = hop
 
-# ATTITUDE: pessimistic or optimistic
-ATTITUDE = 0
+# APPROACH: pessimistic or optimistic
+APPROACH = 0
 
 .PHONY: all run dirs
 
 all: run
 
 run: dirs main.py $(LOG_DIR) $(OUTPUT_DIR)
-	python3 $(RUN_SCRIPT) -top $(TOPO_FILE) -conn $(CONN_FILE) -rt $(RT_FILE) -ft $(FT_FILE) -path $(PT_FILE) -flag $(FLAG) -p $(ATTITUDE)
+	python3 $(RUN_SCRIPT) -top $(TOPO_FILE) -conn $(CONN_FILE) -rt $(RT_FILE) -ft $(FT_FILE) -path $(PT_FILE) -flag $(FLAG) -p $(APPROACH)
 
 dirs: 
 	rm -rf $(LOG_DIR) $(OUTPUT_DIR)
