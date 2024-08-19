@@ -10,6 +10,11 @@ import copy
 import pprint
 import random
 
+# TODO:
+# Write to forwarding file
+# Write to paths file
+# Add logging
+
 class Router:
     def __init__(self) -> None:
         pass
@@ -438,7 +443,7 @@ if __name__ == "__main__":
     parser.add_argument('-ft', help="Forwarding File", action="store", required=True, type=str)
     parser.add_argument('-path', help="Paths File", action="store", required=True, type=str)
     parser.add_argument('-flag', help="Flag for shortest cost path", action="store", required=True, default="hop", type=str)
-    parser.add_argument('-p', help="Approach: Optimistic of Pessimistic", required=True, default=0, type=int)
+    parser.add_argument('-p', help="Approach: Optimistic(0) of Pessimistic(1)", action="store", required=True, default=0, type=int)
     
     args = parser.parse_args()
 

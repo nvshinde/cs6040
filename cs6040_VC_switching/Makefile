@@ -1,5 +1,4 @@
 RUN_SCRIPT = ./main.py
-LOG_DIR = logs
 OUTPUT_DIR = outputs
 
 # topology file
@@ -28,18 +27,18 @@ PT_FILE = ./outputs/pt.txt
 endif
 
 # flag
-FLAG = hop
+ifndef FLAG
+	FLAG = hop
+endif
 
 # APPROACH: pessimistic or optimistic
-APPROACH = 0
+ifndef APPROACH
+	APPROACH = 0
+endif
 
-.PHONY: all run dirs
+.PHONY: all run
 
 all: run
 
-run: dirs main.py $(LOG_DIR) $(OUTPUT_DIR)
+run: main.py
 	python3 $(RUN_SCRIPT) -top $(TOPO_FILE) -conn $(CONN_FILE) -rt $(RT_FILE) -ft $(FT_FILE) -path $(PT_FILE) -flag $(FLAG) -p $(APPROACH)
-
-dirs: 
-	rm -rf $(LOG_DIR) $(OUTPUT_DIR)
-	mkdir $(LOG_DIR) $(OUTPUT_DIR)
