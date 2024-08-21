@@ -1,0 +1,946 @@
+[2024-08-21 20:59:16,640] [INFO]:
+	 Created exercise object
+[2024-08-21 20:59:16,640] [INFO]:
+	 Starting Exercise
+[2024-08-21 20:59:16,640] [INFO]:
+	 Building Routing table
+[2024-08-21 20:59:16,768] [INFO]:
+	 Connection 0 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 1 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 2 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 3 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 4 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 5 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 6 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 7 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 8 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 9 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 10 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 11 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 12 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 13 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 14 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 15 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 16 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 17 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 18 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 19 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 20 admitted on path1
+[2024-08-21 20:59:16,769] [INFO]:
+	 Connection 21 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 22 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 23 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 24 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 25 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 26 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 27 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 28 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 29 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 30 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 31 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 32 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 33 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,770] [INFO]:
+	 33 not admitted on any path
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 34 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 35 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 36 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 37 admitted on path1
+[2024-08-21 20:59:16,770] [INFO]:
+	 Connection 38 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 39 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 40 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 41 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 42 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 43 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,771] [INFO]:
+	 43 not admitted on any path
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 44 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 45 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 46 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 47 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 48 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 49 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 50 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 51 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 52 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,771] [INFO]:
+	 52 admitted on path2
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 53 admitted on path1
+[2024-08-21 20:59:16,771] [INFO]:
+	 Connection 54 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,772] [INFO]:
+	 54 not admitted on any path
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 55 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 56 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 57 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,772] [INFO]:
+	 57 not admitted on any path
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 58 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 59 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 60 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,772] [INFO]:
+	 60 not admitted on any path
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 61 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 62 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 63 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 64 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,772] [INFO]:
+	 64 admitted on path2
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 65 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 66 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 67 admitted on path1
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 68 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,772] [INFO]:
+	 68 not admitted on any path
+[2024-08-21 20:59:16,772] [INFO]:
+	 Connection 69 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 70 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 71 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 72 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 73 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 73 admitted on path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 74 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 75 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 76 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 77 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 78 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 78 not admitted on any path
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 79 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 79 admitted on path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 80 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 81 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 81 not admitted on any path
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 82 admitted on path1
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 83 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,773] [INFO]:
+	 83 not admitted on any path
+[2024-08-21 20:59:16,773] [INFO]:
+	 Connection 84 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 84 not admitted on any path
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 85 admitted on path1
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 86 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 86 admitted on path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 87 admitted on path1
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 88 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 88 admitted on path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 89 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 89 not admitted on any path
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 90 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 90 not admitted on any path
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 91 admitted on path1
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 92 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 92 not admitted on any path
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 93 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 93 not admitted on any path
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 94 admitted on path1
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 95 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 95 admitted on path2
+[2024-08-21 20:59:16,774] [INFO]:
+	 Connection 96 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 97 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 98 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 98 not admitted on any path
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 99 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 99 not admitted on any path
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 100 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 101 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 101 admitted on path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 102 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 103 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 104 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 104 not admitted on any path
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 105 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 105 not admitted on any path
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 106 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 107 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 108 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 108 admitted on path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 109 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,775] [INFO]:
+	 109 not admitted on any path
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 110 admitted on path1
+[2024-08-21 20:59:16,775] [INFO]:
+	 Connection 111 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 111 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 112 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 112 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 113 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 113 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 114 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 114 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 115 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 115 admitted on path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 116 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 116 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 117 admitted on path1
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 118 admitted on path1
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 119 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 119 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 120 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 120 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 121 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 121 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 122 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 122 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 123 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,776] [INFO]:
+	 123 not admitted on any path
+[2024-08-21 20:59:16,776] [INFO]:
+	 Connection 124 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 124 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 125 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 125 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 126 admitted on path1
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 127 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 127 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 128 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 128 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 129 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 129 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 130 admitted on path1
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 131 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 131 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 132 admitted on path1
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 133 admitted on path1
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 134 admitted on path1
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 135 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 135 admitted on path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 136 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 136 not admitted on any path
+[2024-08-21 20:59:16,777] [INFO]:
+	 Connection 137 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,777] [INFO]:
+	 137 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 138 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 138 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 139 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 139 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 140 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 140 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 141 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 141 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 142 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 143 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 144 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 144 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 145 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 145 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 146 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 147 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 148 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 149 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 150 admitted on path1
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 151 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,778] [INFO]:
+	 151 not admitted on any path
+[2024-08-21 20:59:16,778] [INFO]:
+	 Connection 152 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 152 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 153 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 153 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 154 admitted on path1
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 155 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 155 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 156 admitted on path1
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 157 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 157 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 158 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 158 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 159 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 159 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 160 admitted on path1
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 161 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 161 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 162 admitted on path1
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 163 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 163 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 164 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 164 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 165 admitted on path1
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 166 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 166 not admitted on any path
+[2024-08-21 20:59:16,779] [INFO]:
+	 Connection 167 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,779] [INFO]:
+	 167 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 168 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 168 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 169 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 170 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 170 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 171 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 172 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 172 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 173 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 174 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 175 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 175 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 176 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 176 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 177 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 178 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 179 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 179 not admitted on any path
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 180 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 180 admitted on path2
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 181 admitted on path1
+[2024-08-21 20:59:16,780] [INFO]:
+	 Connection 182 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 182 not admitted on any path
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 183 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 183 not admitted on any path
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 184 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 184 not admitted on any path
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 185 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 185 admitted on path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 186 admitted on path1
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 187 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 187 not admitted on any path
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 188 admitted on path1
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 189 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 189 not admitted on any path
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 190 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 190 admitted on path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 191 admitted on path1
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 192 admitted on path1
+[2024-08-21 20:59:16,781] [INFO]:
+	 Connection 193 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,781] [INFO]:
+	 193 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 194 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 194 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 195 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 195 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 196 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 196 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 197 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 197 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 198 admitted on path1
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 199 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 199 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 200 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 200 admitted on path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 201 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 201 admitted on path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 202 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 202 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 203 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 203 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 204 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,782] [INFO]:
+	 204 not admitted on any path
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 205 admitted on path1
+[2024-08-21 20:59:16,782] [INFO]:
+	 Connection 206 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 206 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 207 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 207 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 208 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 208 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 209 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 209 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 210 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 210 admitted on path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 211 admitted on path1
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 212 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 212 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 213 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 213 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 214 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 214 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 215 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 215 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 216 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,783] [INFO]:
+	 216 not admitted on any path
+[2024-08-21 20:59:16,783] [INFO]:
+	 Connection 217 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 217 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 218 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 218 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 219 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 219 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 220 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 220 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 221 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 221 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 222 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 222 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 223 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 223 admitted on path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 224 admitted on path1
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 225 admitted on path1
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 226 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 226 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 227 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 227 admitted on path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 228 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,784] [INFO]:
+	 228 not admitted on any path
+[2024-08-21 20:59:16,784] [INFO]:
+	 Connection 229 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 229 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 230 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 230 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 231 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 231 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 232 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 232 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 233 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 233 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 234 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 234 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 235 admitted on path1
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 236 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 236 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 237 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 237 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 238 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 238 not admitted on any path
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 239 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 239 admitted on path2
+[2024-08-21 20:59:16,785] [INFO]:
+	 Connection 240 admitted on path1
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 241 admitted on path1
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 242 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 242 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 243 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 243 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 244 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 244 admitted on path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 245 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 245 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 246 admitted on path1
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 247 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 247 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 248 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 248 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 249 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 249 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 250 admitted on path1
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 251 admitted on path1
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 252 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,786] [INFO]:
+	 252 not admitted on any path
+[2024-08-21 20:59:16,786] [INFO]:
+	 Connection 253 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 253 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 254 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 254 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 255 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 255 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 256 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 256 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 257 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 257 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 258 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 258 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 259 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 259 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 260 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 260 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 261 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 261 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 262 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 262 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 263 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 263 not admitted on any path
+[2024-08-21 20:59:16,787] [INFO]:
+	 Connection 264 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,787] [INFO]:
+	 264 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 265 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 265 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 266 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 266 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 267 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 267 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 268 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 268 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 269 admitted on path1
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 270 admitted on path1
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 271 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 271 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 272 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 272 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 273 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 273 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 274 admitted on path1
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 275 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 275 admitted on path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 276 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,788] [INFO]:
+	 276 not admitted on any path
+[2024-08-21 20:59:16,788] [INFO]:
+	 Connection 277 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 277 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 278 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 278 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 279 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 279 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 280 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 280 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 281 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 281 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 282 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 282 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 283 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 283 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 284 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 284 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 285 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 285 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 286 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 286 not admitted on any path
+[2024-08-21 20:59:16,789] [INFO]:
+	 Connection 287 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,789] [INFO]:
+	 287 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 288 admitted on path1
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 289 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 289 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 290 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 290 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 291 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 291 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 292 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 292 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 293 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 293 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 294 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 294 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 295 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 295 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 296 admitted on path1
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 297 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 297 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 298 not admitted on path1. Trying path2
+[2024-08-21 20:59:16,790] [INFO]:
+	 298 not admitted on any path
+[2024-08-21 20:59:16,790] [INFO]:
+	 Connection 299 admitted on path1

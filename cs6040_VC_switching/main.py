@@ -9,21 +9,24 @@ import heapq
 import copy
 import pprint
 import random
+import logging
+
 
 # TODO:
 # Write to forwarding file
 # Write to paths file
 # Add logging
-
-class Router:
-    def __init__(self) -> None:
-        pass
+# Add error handling 
+# Change output file names as per input file names
+# Cannot handle if no second path is found
+# Not Link disjoint paths giving bad result, try link disjoint paths. Copy the graph, remove the path1 edges, find smallest path in new graph
 
 class Exercise:
     def __init__(self, topo_file=None, conn_file=None, rt_file=None, ft_file=None, path_file=None, flag=None, approach=None) -> None:
         """
         Initialize object variables.
         """
+        logging.info("Created exercise object")
         self.topo_file = topo_file
         self.conn_file = conn_file
         self.rt_file = rt_file
@@ -37,19 +40,29 @@ class Exercise:
         self.forwarding_table = {} # {node: {conn: {nid_in, vcid_in, nid_out, vcid_out}}}
         self.paths_table = {} # {conn: {src, dst, path, vcid list, pathcost}}
         self.connection_requests = {}
+        self.failed_connections = {'n': 0, 'conns': {}}
+            
 
     def run(self) -> None:
         """
         Runs the lab. 
         """
-        # Parse topology file and build network
-        with open(self.topo_file) as f:
-            num_nodes, num_edges = map(int, f.readline().split())
-            self.nw.add_nodes_from(range(num_nodes))
-            for edge in range(num_edges):
-                node1, node2, prop_delay, edge_cap = map(int, f.readline().split())
-                self.nw.add_edge(node1, node2, delay=prop_delay, cap=edge_cap, conns=[])
-        
+        logging.info("Starting Exercise")
+
+        if os.path.isfile(self.topo_file):
+            # Parse topology file and build network
+            with open(self.topo_file, 'r') as f:
+                num_nodes, num_edges = map(int, f.readline().split())
+                self.nw.add_nodes_from(range(num_nodes))
+                for edge in range(num_edges):
+                    node1, node2, prop_delay, edge_cap = map(int, f.readline().split())
+                    self.nw.add_edge(node1, node2, delay=prop_delay, cap=edge_cap, conns=[])
+            logging.debug(f"Network edges: {self.nw.edges(data=True)}")
+        else:
+            logging.error("Topology file does not exist")
+            print("-----------Check log file-----------")
+            exit(1)
+    
         self.forwarding_table = {node: {} for node in range(num_nodes)}
         
         # Ouput a network image with attributes
@@ -66,17 +79,23 @@ class Exercise:
 
         self.build_routing_table()
         
-        # Read connection requests
-        with open(self.conn_file, 'r') as f:
-            num_connections = int(f.readline().strip())
-            for i in range(num_connections):
-                src, dst, bmin, bave, bmax = map(int, f.readline().split())
-                # print(src, dst, bmin, bave, bmax)
-                self.connection_requests[i] = {'src': src, 
-                                               'dst': dst, 
-                                               'bmin': bmin, 
-                                               'bave': bave, 
-                                               'bmax': bmax}
+        if os.path.isfile(self.conn_file):
+            # Read connection requests
+            with open(self.conn_file, 'r') as f:
+                num_connections = int(f.readline().strip())
+                for i in range(num_connections):
+                    src, dst, bmin, bave, bmax = map(int, f.readline().split())
+                    # print(src, dst, bmin, bave, bmax)
+                    self.connection_requests[i] = {'src': src, 
+                                                'dst': dst, 
+                                                'bmin': bmin, 
+                                                'bave': bave, 
+                                                'bmax': bmax}
+            logging.debug(f"Connection requests: {self.connection_requests}")
+        else:
+            logging.error("Connection file does not exist")
+            print("-----------Check log file-----------")
+            exit(1)
         # pprint.pprint(self.connection_requests)
         
         self.process_connections()
@@ -85,22 +104,43 @@ class Exercise:
         # pprint.pprint(self.forwarding_table)
 
         # TODO:
-        # Write forwarding file
-        # Write paths file
-    
+        # Write to forwarding file
+        # pprint.pprint(self.forwarding_table)
+        with open(self.ft_file, 'w') as f:
+            f.write(f"Router ID, NID_IN, VCID_IN, NID_OUT, VCID_OUT\n")
+            for node, conns in self.forwarding_table.items():
+                if conns:
+                    for conn, data in conns.items():
+                        f.write(f"{node}, {data['nid_in']}, {data['vcid_in']}, {data['nid_out']}, {data['vcid_out']}\n")
+                else:
+                    f.write(f"{node}, -, -, -, -\n")
+        logging.debug(f"Forwarding table: {self.forwarding_table}")
+
+        # TODO:
+        # Write to paths file
+        with open(self.path_file, 'w') as f:
+            f.write(f"CONN ID, SOURCE, DST, PATH, VCIDs, PATH COST\n")
+            for conn, data in self.paths_table.items():
+                f.write(f"{conn}, {data['src']}, {data['dst']}, {data['path']}, {data['vcids']}, {data['cost']}\n")
+        logging.debug(f"Paths table: {self.paths_table}")
+
     def build_routing_table(self) -> None:
         """
         Builds a routing table with 2 shortest paths for all pairs
         """
+        logging.info("Building Routing table")
+        
         open(self.rt_file, 'w').close()
+
         for node in self.nw.nodes:
             paths = self.get_paths(src_node=node)
             with open(self.rt_file, 'a') as f:
                 f.write(f"--X-- Routing table for Node: {node} --X--\n")
+                f.write(f"DST, PATH, DELAY, COST\n")
                 self.routing_table[node] = {}
                 for dst_node in paths.keys():
-                    f.write(f"{dst_node} {str(paths[dst_node][0]['path'])}  {paths[dst_node][0]['delay']} {paths[dst_node][0]['cost']} \n")
-                    f.write(f"{dst_node} {str(paths[dst_node][1]['path'])}  {paths[dst_node][1]['delay']} {paths[dst_node][1]['cost']} \n")
+                    f.write(f"{dst_node}, {str(paths[dst_node][0]['path'])}, {paths[dst_node][0]['delay']}, {paths[dst_node][0]['cost']} \n")
+                    f.write(f"{dst_node}, {str(paths[dst_node][1]['path'])}, {paths[dst_node][1]['delay']}, {paths[dst_node][1]['cost']} \n")
                     self.routing_table[node][dst_node] = {
                                                             'path1': {
                                                                 'path': paths[dst_node][0]['path'], 
@@ -114,6 +154,7 @@ class Exercise:
                                                             }
                                                         }
                 f.write("\n\n")
+        logging.debug(f"Routing Table: {self.routing_table}")
         # pprint.pprint(self.routing_table)
 
     def get_paths(self, src_node=None) -> dict:
@@ -127,15 +168,18 @@ class Exercise:
             Add number of paths to generalize.
             OPTIMIZATION: Run Floyd-Warshall/Dijkstra here to get 1st level, single source shortest paths for src_node.
         """
+        logging.debug(f"Getting paths for src: {src_node}")
         paths = {node: [{'path': [], 'delay': 0, 'cost': 0}, {'path': [], 'delay': 0, 'cost': 0}] for node in self.nw.nodes}
 
         for node in self.nw.nodes:
             nw_copy = copy.deepcopy(self.nw)
             
             # Yen's algorithm
+# BUG: A graph having no path between src and dst returns None.
             path1, path2 = self.yenKSP(nw=nw_copy, src=src_node, dst=node, K=2)
 
-            if path1 == None:
+# BUG: Handle src == dst differently
+            if path1 == path2:
                 paths[node][0]['path'] = [node]
                 paths[node][1]['path'] = [node]
 
@@ -153,6 +197,7 @@ class Exercise:
 
                 paths[node][0]['cost'] = self.calculate_cost(path1)
                 paths[node][1]['cost'] = self.calculate_cost(path2)
+        logging.debug(f"Path to all dst: {paths}")
         return paths
 
     def yenKSP(self, nw, src, dst, K=2):
@@ -172,8 +217,9 @@ class Exercise:
         potential_paths = []
 
         if src == dst:
-            return None, None
-        
+            return [src], [src]
+
+# BUG: Handle if path not found        
         # Get first shortest path
         if self.flag == "hop":
             try:
@@ -208,6 +254,8 @@ class Exercise:
                     for u, v in list(nw.edges(node)):
                         nw.remove_edge(u, v)
                 # print(f"src:{src}, dst:{dst}, k:{k}, i:{i}, edges:{nw.edges()}")
+
+# BUG: Handle if 2nd path not found
                 if self.flag == "hop":    
                     try:
                         spur_path_len, spur_path = nx.single_source_dijkstra(nw, spur_node, dst)
@@ -230,6 +278,7 @@ class Exercise:
             lens.append(l)
             paths.append(p)
 
+# BUG: Handle empty returns
         return paths[0], paths[1]
     
     def get_path_len(self, path) -> int:
@@ -279,10 +328,11 @@ class Exercise:
         
     def process_connections(self) -> None:
         for conn_i, conn_i_data in self.connection_requests.items():
+            # print(conn_i, conn_i_data)
             conn_i_path1 = self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path1']['path']
             conn_i_path2 = self.routing_table[conn_i_data['src']][conn_i_data['dst']]['path2']['path']
             
-            print(conn_i, conn_i_path1, conn_i_path2)
+            # print(conn_i, conn_i_path1, conn_i_path2)
             
             conn_i_admit = True
             conn_i_admit_path = None
@@ -312,14 +362,14 @@ class Exercise:
                         break
             
             if conn_i_admit:
-                print(f"{conn_i} admitted on path1")
+                logging.info(f"Connection {conn_i} admitted on path1")
                 conn_i_admit_path = conn_i_path1
                 for i in range(len(conn_i_path1) - 1):
                     u, v = conn_i_path1[i], conn_i_path1[i+1]
                     edge_data = self.nw.get_edge_data(u, v)
                     edge_data['conns'].append(conn_i)
             else:
-                print(f"{conn_i} not admitted on path1. Trying path2")
+                logging.info(f"Connection {conn_i} not admitted on path1. Trying path2")
                 conn_i_admit = True
                 for i in range(len(conn_i_path2)-1):
                     u, v = conn_i_path2[i], conn_i_path2[i+1]
@@ -329,7 +379,7 @@ class Exercise:
                         sum_beqv_j = 0
                         for conn_j in link_conns:
                                 sum_beqv_j += min(self.connection_requests[conn_j]['bmax'],
-                                            self.connection_requests[conn_j]['bave'] + 0.35 * (self.connection_requests[conn_j]['bamx'] - self.connection_requests[conn_j]['bmin']))
+                                            self.connection_requests[conn_j]['bave'] + 0.35 * (self.connection_requests[conn_j]['bmax'] - self.connection_requests[conn_j]['bmin']))
                         if beqv_i > (c_l - sum_beqv_j):
                             conn_i_admit = False
                             break
@@ -343,7 +393,7 @@ class Exercise:
                             break
             
                 if conn_i_admit:
-                    print(f"{conn_i} admitted on path2")
+                    logging.info(f"{conn_i} admitted on path2")
                     conn_i_admit_path = conn_i_path2
                     for i in range(len(conn_i_path2) - 1):
                         u, v = conn_i_path2[i], conn_i_path2[i+1]
@@ -351,7 +401,9 @@ class Exercise:
                         edge_data['conns'].append(conn_i)
 
             if not conn_i_admit:
-                print(f"{conn_i} not admitted on any path")
+                logging.info(f"{conn_i} not admitted on any path")
+                self.failed_connections['n'] = self.failed_connections['n'] + 1
+                print(self.failed_connections)
             else:
                 """setup the connection vcids"""
 
@@ -411,21 +463,21 @@ class Exercise:
             node, flag ("in", "out")
         Returns: Vcid list
         """
-        vcid = random.randint(0, 1e7)
+        vcid = random.randint(0, self.nw.number_of_nodes())
         if node not in self.forwarding_table.keys():
             return vcid
         
         if flag == "in":
-            for conn, _ in self.forwarding_table[node]:
+            for conn, _ in self.forwarding_table[node].items():
                 if vcid == self.forwarding_table[node][conn]['vcid_in']:
-                    vcid = random.randint(0, 1e7)
+                    vcid = random.randint(0, self.nw.number_of_nodes())
                 else:
                     continue
     
         if flag == "out":
-            for conn, _ in self.forwarding_table[node]:
+            for conn, _ in self.forwarding_table[node].items():
                 if vcid == self.forwarding_table[node][conn]['vcid_out']:
-                    vcid = random.randint(0, 1e7)
+                    vcid = random.randint(0, self.nw.number_of_nodes())
                 else:
                     continue
         
@@ -434,6 +486,10 @@ class Exercise:
 if __name__ == "__main__":
 
     random.seed(0)
+    
+    # Logging
+    logging.basicConfig(level=logging.INFO, filename="log.txt", filemode='w', format="[%(asctime)s] [%(levelname)s]:\n\t %(message)s")
+
     parser = argparse.ArgumentParser(prog="Virtual Circuit Switching", 
                                      description="Simulates VC switching")
     

@@ -3,12 +3,12 @@ OUTPUT_DIR = outputs
 
 # topology file
 ifndef TOPO_FILE
-TOPO_FILE = ./inputs/topo.txt
+TOPO_FILE = ./inputs/ARPANET-Topo.txt
 endif
 
 # connections file
 ifndef CONN_FILE
-CONN_FILE = ./inputs/conn.txt
+CONN_FILE = ./inputs/ARPANET-300conn.txt
 endif
 
 # routing table file
