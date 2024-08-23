@@ -20,7 +20,7 @@
  ```
 ## 2. Install dependencies
  ```
- $ pip install -r ./requirements.txt
+ $ pip install ./requirements.txt
  ```
 ## 3. There are two ways to run this lab:
 ### With Make:
