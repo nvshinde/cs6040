@@ -1,0 +1,2 @@
+[2024-09-12 18:01:11,690] [DEBUG]:
+	 Loaded backend qtagg version 5.15.2.

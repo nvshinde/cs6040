@@ -1,0 +1,10 @@
+N --> Power of 2. N <= 32
+A --> #Active inputs. A <= N
+E1 --> Ouput port number at input 1
+E2 --> Ouput port number at input 2
+.
+.
+.
+.
+.
+EA
