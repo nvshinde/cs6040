@@ -1,5 +1,0 @@
-Omega
-T T T
-T C C
-C C T
-C T C
