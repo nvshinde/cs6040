@@ -1,0 +1,8 @@
+#!/home/nikhils/nikhilstudy/cs6040/CS23S018/cs6040_MIN_Switching_Configuration/venv/bin/python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from fontTools.ttx import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())

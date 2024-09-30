@@ -26,11 +26,11 @@ class Exercise:
         
 
     def run(self) -> None:
-        if self.sw == "omega":
+        if self.sw == "Omega":
             self.omega()
-        elif self.sw == "delta":
+        elif self.sw == "Delta":
             self.delta()
-        elif self.sw == "benes":
+        elif self.sw == "Benes":
             self.benes()
         else:
             pass
@@ -44,34 +44,35 @@ class Exercise:
         num_stages = bit_len
         num_switches = self.n // 2  # switches in a stage
 
-        # Initialize a switch matrix with 'T' mode as default for each switching element
+        """Initialize a switch matrix with 'T' mode as default for each switching element"""
         switch_matrix = [['T' for _ in range(num_stages)] for _ in range(num_switches)]
         
         for i, outport in enumerate(self.outports):
-            # Initial perfect shuffle. Before the leftmost stage
+            """Initial perfect shuffle. Before the leftmost stage"""
             curr_stage_inport = self.circular_lshift(i)
 
             for stage in range(num_stages):
-                # Get the idx of stage
+                """Get the idx of stage"""
                 SE_idx = curr_stage_inport // 2
                 
-                # Get the ports of the stage element. 1 or 0
+                """Get the ports of the stage element. 1 or 0"""
                 SE_in_port = curr_stage_inport % 2
                 SE_out_port = (outport >> (bit_len - stage - 1)) & 1
                 
-                # Get the outport of the current stage. [0, n)
+                """Get the outport of the current stage. [0, n)"""
                 curr_stage_outport = SE_idx * 2 + SE_out_port
 
-                # Update mode of switching element
+                """Update mode of switching element"""
                 if SE_in_port == SE_out_port:
                     switch_matrix[SE_idx][stage] = 'T'
                 else:
                     switch_matrix[SE_idx][stage] = 'C'
 
-                # Get next stage input port. [0, n).
+                """Get next stage input port. [0, n)."""
                 curr_stage_inport = self.circular_lshift(int(curr_stage_outport))
         
         with open(OUTFILE, 'w') as f:
+            f.write("Omega\n")
             for row in switch_matrix:
                 f.write(' '.join(row) + '\n')
             
@@ -83,62 +84,64 @@ class Exercise:
         """
         bit_len = int(math.log2(self.n))
         num_stages = bit_len
-        num_switches = self.n // 2
+        num_switches = self.n // 2 # No. of switches in a stage
 
-        # Initialize a switch matrix with 'T' mode as default for each switching element
+        """Initialize a switch matrix with 'T' mode as default for each switching element"""
         switch_matrix = [['T' for _ in range(num_stages)] for _ in range(num_switches)]
         
         for i, outport in enumerate(self.outports):
-            # Initial perfect shuffle. Before the leftmost stage
+            """Initial perfect shuffle. Before the leftmost stage"""
             curr_stage_inport = self.circular_lshift(i)
 
             for stage in range(num_stages):
-                # Get the idx of stage
+                """Get the idx of stage"""
                 SE_idx = curr_stage_inport // 2
                 
-                # Get the ports of the stage element. 1 or 0
+                """Get the ports of the stage element. 1 or 0"""
                 SE_in_port = curr_stage_inport % 2
                 SE_out_port = (outport >> (bit_len - stage - 1)) & 1
                 
-                # Get the outport of the current stage. [0, n)
+                """Get the outport of the current stage. [0, n)"""
                 curr_stage_outport = SE_idx * 2 + SE_out_port
 
-                # Update mode of switching element
+                """Update mode of switching element"""
                 if SE_in_port == SE_out_port:
                     switch_matrix[SE_idx][stage] = 'T'
                 else:
                     switch_matrix[SE_idx][stage] = 'C'
                 
                 if SE_out_port == 0:
-                    # Upper port of a switch
+                    """Upper port of a switch"""
                     tmp = SE_idx % (2**(num_stages - 1 - stage))
                     if (tmp) < num_switches // (2**(stage+1)):
-                        # switch belongs to upper half of the stage
+                        """switch belongs to upper half of the stage"""
                         curr_stage_inport = curr_stage_outport
                     else:
-                        # switch belongs to lower half of the stage 
+                        """switch belongs to lower half of the stage """
                         # curr_stage_inport = curr_stage_outport - ((num_switches // 2**stage) // (2**(stage+1))) - 1
                         curr_stage_inport = curr_stage_outport - (num_switches // 2**(2*stage+1)) - 1
                 else:
-                    # Lower port of a switch
+                    """Lower port of a switch"""
                     tmp = SE_idx % (2**(num_stages - 1 - stage))
                     if (tmp) >= num_switches // (2**(stage+1)):
-                        # switch belongs to lower half of the stage
+                        """switch belongs to lower half of the stage"""
                         curr_stage_inport = curr_stage_outport
                     else:
-                        # swtich belongs to upper half of the stage
+                        """swtich belongs to upper half of the stage"""
                         # curr_stage_inport = curr_stage_outport + ((num_switches // 2**stage) // (2**(stage+1))) + 1
                         curr_stage_inport = curr_stage_outport + (num_switches // 2**(2*stage+1)) + 1
 
 
         with open(OUTFILE, 'w') as f:
+            f.write("Delta\n")
             for row in switch_matrix:
                 f.write(' '.join(row) + '\n')
     
 
     def circular_rshift(self, num, stage=0, k=1):
         """Specifically for Benes, no. of bits is varied according to stage"""
-        return ((num >> k) |  (num << int(math.log2(self.n/(2**stage))) - k)) & (int(self.n/(2**stage)) - 1)
+        # return ((num >> k) |  (num << int(math.log2(self.n/(2**stage))) - k)) & (int(self.n/(2**stage)) - 1)
+        return ((num >> k) |  (num << int(math.log2(self.n)) - k)) & (int(self.n/(2**stage)) - 1)
     
     def print_matrix(self, matrix):
         for row in matrix:
@@ -146,43 +149,64 @@ class Exercise:
                 print(item['mode'], end=' ')
             print()
 
-    def benes(self) -> None:
-                
+    def benes(self) -> None:            
+
+        benes8x8 = [[0, 0, 0, 0], 
+                    [1, 4, 1, 2],
+                    [2, 1, 2, 1],
+                    [3, 5, 3, 3],
+                    [4, 2, 4, 4],
+                    [5, 6, 5, 6],
+                    [6, 3, 6, 5],
+                    [7, 7, 7, 7]]
         num_stages = int(math.log2(self.n)) * 2 - 1
         num_switches = int(self.n/2)
-        # switch_matrix = [[{'mode': 'z', 'op0': '', 'op1': '', 'ip0': '', 'ip1': '', 'set' : 0} for _ in range(num_stages)] for _ in range(num_switches)]
         switch_matrix = [[{'mode': '-', 'set' : 0} for _ in range(num_stages)] for _ in range(num_switches)]
-        # switch_matrix[0][1]['mode'] = 'T'
-        # pprint.pprint(switch_matrix)
 
         for i, outport in enumerate(self.outports):
-            lcurr_stage_global_inport = i
-            rcurr_stage_global_inport = outport
-            
+            # print("==================================x==================================")
+            lnxt_stage_sub_inport = i
+            rnxt_stage_sub_inport = outport
+
+            # initialize to init
+            lnxt_stage_global_inport = lnxt_stage_sub_inport
+            rnxt_stage_global_inport = rnxt_stage_sub_inport
+
+            incoming = None
+            outgoing = None
+            midNode = None
+
             for stage in range(num_stages//2): 
-                """Go till middle - 1 stage only"""
-                lstage = stage
-                lcurr_stage_global_inport = lcurr_stage_global_inport
-                lcurr_stage_sub_inport = lcurr_stage_global_inport % int((self.n / (2**stage)))
+                """Go till 'middle - 1' stage only"""
+                lcurr_stage_sub_inport = lnxt_stage_sub_inport
+                rcurr_stage_sub_inport = rnxt_stage_sub_inport
 
-                # matrix params
-                l_mat_col = stage
+                lcurr_stage_global_inport = lnxt_stage_global_inport
+                rcurr_stage_global_inport = rnxt_stage_global_inport
+
+                """matrix params"""
                 l_mat_row = lcurr_stage_global_inport // 2
-                r_mat_col = num_stages - stage - 1
+                l_mat_col = stage
                 r_mat_row = rcurr_stage_global_inport // 2
+                r_mat_col = num_stages - stage - 1
 
-                rstage = stage # num_stages - stage - 1
-                rcurr_stage_global_inport = rcurr_stage_global_inport
-                rcurr_stage_sub_inport = rcurr_stage_global_inport % (self.n / (2**stage))
 
-                # rSE_inport = rcurr_stage_global_inport % 2
-                print(f"Stage: {stage}, lcsgi: {lcurr_stage_global_inport}, lcssi: {lcurr_stage_sub_inport}, rcsgi: {rcurr_stage_global_inport}, rcssi: {rcurr_stage_global_inport}, l_MATRIX: [{l_mat_row}, {l_mat_col}], r_MATRIX: [{r_mat_row}, {r_mat_col}]")
+                # print(f"Start: Idx: {i}, Conn: {outport}, Stage: {stage}, lcsgi: {lcurr_stage_global_inport}, lcssi: {lcurr_stage_sub_inport}, rcsgi: {rcurr_stage_global_inport}, rcssi: {rcurr_stage_sub_inport}, l_MATRIX: [{l_mat_row}, {l_mat_col}], r_MATRIX: [{r_mat_row}, {r_mat_col}]")
+                
                 if switch_matrix[l_mat_row][l_mat_col]['set'] == 0 and switch_matrix[r_mat_row][r_mat_col]['set'] == 0:
                     """No switch is set"""
                     """Thus we can set left switch to default 'T' and set right accordingly"""
+
                     switch_matrix[l_mat_row][l_mat_col]['set'] = 1
                     switch_matrix[l_mat_row][l_mat_col]['mode'] = 'T'
 
+                    
+                    if stage == 0:
+                        row = i
+                        outgoing = benes8x8[row][1]
+                    else:
+                        outgoing = benes8x8[outgoing][3]
+                        midNode = outgoing // 2
 
                     lSE_inport = lcurr_stage_sub_inport % 2
                     lSE_outport = None
@@ -196,12 +220,16 @@ class Exercise:
                         """Accordingly set the right side switch"""
                         switch_matrix[r_mat_row][r_mat_col]['set'] = 1
                         rSE_inport = rcurr_stage_sub_inport % 2
+                              
                         if rSE_inport == 0:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'T'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage)
+                            
                         else:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'C'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport - 1, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage)
                     else:
                         """Lower part of the subnetwork"""
                         """Accordingly set the right side switch"""
@@ -209,14 +237,23 @@ class Exercise:
                         rSE_inport = rcurr_stage_sub_inport % 2
                         if rSE_inport == 0:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'C'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport + 1, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage)
                         else:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'T'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage)
+
+                    # Compute sub inport for next stage
+                    lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage+1)
 
                     """Compute the global input for the next stage"""
-                    # TODO: BUG?
-                    lcurr_stage_global_inport = self.circular_rshift(lcurr_stage_global_inport, stage=stage)
+                    # TODO: BUG
+                    lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage)
+                    # lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage) | (1 << int(math.log2(self.n) / (2**stage))) & int(self.n/(2**stage) - 1)
+
+                    if self.n == 8:
+                        pass
 
 
                 elif switch_matrix[l_mat_row][l_mat_col]['set'] == 0 and switch_matrix[r_mat_row][r_mat_col]['set'] == 1:
@@ -227,8 +264,34 @@ class Exercise:
                     rSE_outport = None
                     if (mode == 'T'):
                         rSE_outport = rSE_inport
+                        rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage+1)
+                        rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage)
+                        if stage == 0:
+                            row = i
+                            outgoing = benes8x8[row][1]
+                        else:
+                            outgoing = benes8x8[outgoing][3]
+                            midNode = outgoing // 2
                     else:
                         rSE_outport =  1 - rSE_inport
+                        if rSE_inport == 0:
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage)
+                            if stage == 0:
+                                row = i+1
+                                outgoing = benes8x8[row][1]
+                            else:
+                                outgoing = benes8x8[outgoing][3]
+                                midNode = outgoing // 2
+                        else:
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage)
+                            if stage == 0:
+                                row = i-1
+                                outgoing = benes8x8[row][1]
+                            else:
+                                outgoing = benes8x8[outgoing][3]
+                                midNode = outgoing // 2
 
                     if rSE_outport == 0:
                         """Upper part of the network"""
@@ -236,20 +299,28 @@ class Exercise:
                         lSE_inport = lcurr_stage_sub_inport % 2
                         if lSE_inport == 0:
                             switch_matrix[l_mat_row][l_mat_col]['mode'] = 'T'
-                            lcurr_stage_global_inport = self.circular_rshift(lcurr_stage_global_inport, stage=stage)
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage)
                         else:
                             switch_matrix[l_mat_row][l_mat_col]['mode'] = 'C'
-                            lcurr_stage_global_inport = self.circular_rshift(lcurr_stage_global_inport - 1, stage=stage)
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport - 1, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport - 1, stage=stage)
                     else:
                         """Lower part of the network"""
                         switch_matrix[l_mat_row][l_mat_col]['set'] = 1
                         lSE_inport = lcurr_stage_sub_inport % 2
                         if lSE_inport == 0:
                             switch_matrix[l_mat_row][l_mat_col]['mode'] = 'C'
-                            lcurr_stage_global_inport = self.circular_rshift(lcurr_stage_global_inport + 1, stage=stage)
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport + 1, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport + 1, stage=stage)
                         else:
                             switch_matrix[l_mat_row][l_mat_col]['mode'] = 'T'
-                            lcurr_stage_global_inport = self.circular_rshift(lcurr_stage_global_inport, stage=stage)
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage)
+                    
+                    """Compute the global input for the next stage"""
+                    # TODO: BUG
+                    # lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage)
 
                 elif switch_matrix[l_mat_row][l_mat_col]['set'] == 1 and switch_matrix[r_mat_row][r_mat_col]['set'] == 0:
                     """Left swtich is set"""
@@ -259,8 +330,34 @@ class Exercise:
                     lSE_outport = None
                     if (mode == 'T'):
                         lSE_outport = lSE_inport
+                        lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage+1)
+                        lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage)
+                        if stage == 0:
+                            row = i
+                            outgoing = benes8x8[row][1]
+                        else:
+                            outgoing = benes8x8[outgoing][3]
+                            midNode = outgoing // 2
                     else:
                         lSE_outport = 1 - lSE_inport
+                        if lSE_inport == 0:
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport + 1, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport + 1, stage=stage)
+                            if stage == 0:
+                                row = i+1
+                                outgoing = benes8x8[row][1]
+                            else:
+                                outgoing = benes8x8[outgoing][3]
+                                midNode = outgoing // 2
+                        else:
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport - 1, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport - 1, stage=stage)
+                            if stage == 0:
+                                row = i-1
+                                outgoing = benes8x8[row][1]
+                            else:
+                                outgoing = benes8x8[outgoing][3]
+                                midNode = outgoing // 2
                     
                     if lSE_outport == 0:
                         """Upper part of the subnetwork"""
@@ -268,11 +365,12 @@ class Exercise:
                         rSE_inport = rcurr_stage_sub_inport % 2
                         if rSE_inport == 0:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'T'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport, stage=stage)
-
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage)
                         else:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'C'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport - 1, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage)
 
                     else:
                         """Lower part of the subnetwork"""
@@ -280,62 +378,107 @@ class Exercise:
                         rSE_inport = rcurr_stage_sub_inport % 2
                         if rSE_inport == 0:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'C'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport + 1, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage)
                         else:
                             switch_matrix[r_mat_row][r_mat_col]['mode'] = 'T'
-                            rcurr_stage_global_inport = self.circular_rshift(rcurr_stage_global_inport, stage=stage)
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage)
 
-                    lcurr_stage_global_inport = self.circular_rshift(lcurr_stage_global_inport, stage=stage)
-
+                    """Compute the global input for the next stage"""
+                    # TODO: BUG
                     
                 elif switch_matrix[l_mat_row][l_mat_col]['set'] == 1 and switch_matrix[r_mat_row][r_mat_col]['set'] == 1:
                     """Both switches are set"""
-                    
                     """Check left switch config and set next stage input accordingly"""
-                    lmode = switch_matrix[l_mat_row][l_mat_col]['mode']
-                    
-
-                    rmode = switch_matrix[r_mat_row][r_mat_col]['mode']
-
-                print(f"Input: {i}, Connection: {outport}, Stage: {stage}.")
-                self.print_matrix(switch_matrix)
-            # Middle stage connect
-
-    def benes_back_tracking(self):
-        num_stages = int(math.log2(self.n)) * 2 - 1
-        num_switches = int(self.n/2)
-        switch_matrix = [[{'mode': 'z', 'op0': '', 'op1': '', 'ip0': '', 'ip1': ''} for _ in range(num_stages)] for _ in range(num_switches)]
-
-        for i, outport in enumerate(self.outports):
-            # Initially
-            curr_stage_inport = i
-            curr_SE_inport = i % 2
-            curr_SE_idx = curr_stage_inport // 2
-            for stage in range(num_stages):
-                if stage < num_stages // 2:
-                    """Left part of the network"""
-                    col = stage
-                    row = curr_stage_inport // 2
-
-                    if switch_matrix[row][col]['mode'] == 'z':
-                        switch_matrix[row][col]['mode'] = 'T'
-                        curr_stage_inport = self.circular_rshift(curr_stage_inport, stage=stage)
-                        pass
-                    elif switch_matrix[row][col]['mode'] == 'T':
-                        pass
-                    elif switch_matrix[row][col]['mode'] == 'C':
-                        pass
+                    lmode = switch_matrix[l_mat_row][l_mat_col]['mode']           
+                    if (lmode == 'T'):
+                        lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage+1)
+                        lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport, stage=stage)
+                        if stage == 0:
+                            row = i
+                            outgoing = benes8x8[row][1]
+                        else:
+                            outgoing = benes8x8[outgoing][3]
+                            midNode = outgoing // 2
                     else:
-                        pass
-                    pass
-                else:
-                    """Right part of the network"""
-                    col = stage
-                    # row = 
-                    pass
-                pass
-            pass
+                        lSE_inport = lcurr_stage_sub_inport % 2
+                        if lSE_inport == 0:
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport + 1, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport + 1, stage=stage)
+                            if stage == 0:
+                                row = i+1
+                                outgoing = benes8x8[row][1]
+                            else:
+                                outgoing = benes8x8[outgoing][3]
+                                midNode = outgoing // 2
+                        else:
+                            lnxt_stage_sub_inport = self.circular_rshift(lcurr_stage_sub_inport - 1, stage=stage+1)
+                            lnxt_stage_global_inport = self.circular_rshift(lcurr_stage_sub_inport - 1, stage=stage)
+                            if stage == 0:
+                                row = i-1
+                                outgoing = benes8x8[row][1]
+                            else:
+                                outgoing = benes8x8[outgoing][3]
+                                midNode = outgoing // 2
+                        
+                    
+                    rmode = switch_matrix[r_mat_row][r_mat_col]['mode']
+                    if (rmode == 'T'):
+                        rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage+1)
+                        rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport, stage=stage)
+                    else:
+                        rSE_inport = rcurr_stage_sub_inport % 2
+                        if rSE_inport == 0:
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport + 1, stage=stage)
+                        else:
+                            rnxt_stage_sub_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage+1)
+                            rnxt_stage_global_inport = self.circular_rshift(rcurr_stage_sub_inport - 1, stage=stage)
+                    
+                    """Compute the global input for the next stage"""
+                    # TODO: BUG
 
+                # print(f"End: Idx: {i}, Conn: {outport}, Stage: {stage}, lnsgi: {lnxt_stage_global_inport}, lnssi: {lnxt_stage_sub_inport}, rnsgi: {rnxt_stage_global_inport}, rnssi: {rnxt_stage_sub_inport}, l_MATRIX: [{l_mat_row}, {l_mat_col}], r_MATRIX: [{r_mat_row}, {r_mat_col}]")
+                # self.print_matrix(switch_matrix)
+            
+            # Middle stage connect
+            if self.n == 8:
+                mat_col = num_stages // 2
+                mat_row = midNode
+                if (lnxt_stage_sub_inport == rnxt_stage_sub_inport):
+                    switch_matrix[mat_row][mat_col]['set'] = '1'
+                    switch_matrix[mat_row][mat_col]['mode'] = 'T'
+                else:
+                    switch_matrix[mat_row][mat_col]['set'] = '1'
+                    switch_matrix[mat_row][mat_col]['mode'] = 'C'
+            else:
+                mat_col = num_stages // 2
+                mat_row = lnxt_stage_global_inport // 2
+
+                # print(f"Middle --> Idx: {i}, Conn: {outport}, Stage: {stage}, lnsgi: {lnxt_stage_global_inport}, lnssi: {lnxt_stage_sub_inport}, rnsgi: {rnxt_stage_global_inport}, rnssi: {rnxt_stage_sub_inport}, MATRIX: [{mat_row}, {mat_col}]")
+
+                # print(f"left_in: {lnxt_stage_sub_inport}, right_in: {rnxt_stage_sub_inport}")
+
+                if (lnxt_stage_sub_inport == rnxt_stage_sub_inport):
+                    switch_matrix[mat_row][mat_col]['set'] = '1'
+                    switch_matrix[mat_row][mat_col]['mode'] = 'T'
+                else:
+                    switch_matrix[mat_row][mat_col]['set'] = '1'
+                    switch_matrix[mat_row][mat_col]['mode'] = 'C'
+
+        with open(OUTFILE, 'w') as f:
+            f.write("Benes\n")
+            for row in switch_matrix:
+                row_str = ""
+                for item in row:
+                    if item['mode'] == '-':
+                        row_str += "T "
+                    else:
+                        row_str += f"{item['mode']} "
+                row_str = row_str[:-1]
+                f.write(row_str)
+                f.write("\n")
 
 if __name__ == "__main__":
     random.seed(0)
@@ -345,7 +488,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="MIN Switching Configuration",
                                      description="")
     parser.add_argument('-inf', help="'in' arg doesnt work. Use 'inf'. Input File", action="store", required=True, type=str)
-    parser.add_argument('-sw', help="Network type. 'omega', 'benes', 'delta'", action="store", required=True, type=str)
+    parser.add_argument('-sw', help="Network type. 'Omega', 'Benes', 'Delta'", action="store", required=True, type=str)
 
     args = parser.parse_args()
     cwd = os.getcwd()
