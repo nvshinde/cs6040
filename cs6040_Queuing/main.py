@@ -249,6 +249,6 @@ if __name__ == "__main__":
         else:
             for n in [4, 8, 16, 32, 64, 100]:
                 for p in [0.4, 0.6, 0.8, 1.0]:
-                    for k in [0.4, 0.7, 1.0]:
-                        for l in [0.4, 0.7, 1.0]:
+                    for l in [0.4, 0.7, 1.0]:
+                        for k in [0.4, 0.7, 1.0]:
                             run(n, args.B, p, args.q, int(k*n), int(l*n), args.gf, args.T)
