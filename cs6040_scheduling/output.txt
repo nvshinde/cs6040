@@ -1,0 +1,9 @@
+Conn ID, Bg, Bt, Bt/Bg, Fraction of link BW, Mean pkt delay, Pkt drop prob
+0, 23575119, 5196735, 0.2204, 0.5334, 608.8061, 0.7795
+1, 16236953, 2598627, 0.1600, 0.2667, 674.4690, 0.8392
+2, 21423243, 1298864, 0.0606, 0.1333, 783.0084, 0.9390
+3, 26396875, 648760, 0.0246, 0.0666, 815.6426, 0.9754
+
+Mean packet delay: 720.4815
+Mean packet drop probability: 0.8833
+Server Utilizaition: 0.4871
