@@ -8,3 +8,6 @@ rules16: pktclf-16W.c
 
 inputs: pktinfgen.c
 	gcc -o $@ $< -lm
+
+inputs16: pktinfgen.c
+	gcc -o $@ $< -lm

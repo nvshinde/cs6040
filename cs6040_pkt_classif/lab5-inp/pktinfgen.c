@@ -22,7 +22,7 @@ void gen_match(int *addr1, int *addr2,  int len1, int len2, FILE *fpout)
     if (len1 <= 16)
       {
 	fprintf(fpout, "%d.%ld.%ld.%ld ", addr1[0], 
-		addr1[1]+ random()%((long) pow(2,len1-8)),  
+		addr1[1]+ random()%((long) pow(2,16-len1)),  
 		random()%255,  random()%255);
       }
     else
