@@ -37,6 +37,9 @@ class Trie:
     def get_prefixes(self, prefix):
         prefixes = []
         current = self.root
+        
+        if current.rules:                                                                           # * match
+            prefixes.append(current)
 
         for bit in prefix:
             if bit in current.children.keys():
@@ -154,7 +157,7 @@ class Router:
                 i+=1
 
                 rules_matched = [item+1 for item in rules_matched]                                  # +1 to begin indexing at 1
-                rules_matched = "".join(str(x) for x in rules_matched)
+                # rules_matched = " ".join(str(x) for x in rules_matched)
                 f.write(f"{addr1}, {addr2}, {len(rules_matched)}, {rules_matched}, {time_us}\n")
             f.write(f"Average search time is: {(avg_time/i):.3f} microseconds")
 
