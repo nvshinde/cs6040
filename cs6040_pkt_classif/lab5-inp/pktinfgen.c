@@ -28,7 +28,7 @@ void gen_match(int *addr1, int *addr2,  int len1, int len2, FILE *fpout)
     else
       {
 	fprintf(fpout, "%d.%d.%ld.%ld ", addr1[0], addr1[1], 
-		addr1[2]+ random()%((long) pow(2,len1-16)),  
+		addr1[2]+ random()%((long) pow(2,16-len1)),  
 		random()%255);
       }
   
@@ -40,13 +40,13 @@ void gen_match(int *addr1, int *addr2,  int len1, int len2, FILE *fpout)
     if (len2 <= 16)
       {
 	fprintf(fpout, "%d.%ld.%ld.%ld\n", addr2[0], 
-		addr2[1]+  random()%((long) pow(2,len2-8)),  
+		addr2[1]+  random()%((long) pow(2,16-len2)),  
 		random()%255,  random()%255);
       }
     else
       {
 	fprintf(fpout, "%d.%d.%ld.%ld\n", addr2[0], addr2[1], 
-		addr2[2]+ random()%((long) pow(2,len2-16)),  
+		addr2[2]+ random()%((long) pow(2,16-len2)),  
 		random()%255);
       }
 }
