@@ -163,9 +163,9 @@ class Router:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", help="Rules file", type=str, )
-    parser.add_argument("-i", help="Input Address file", type=str)
-    parser.add_argument("-o", help="Output file", type=str)
+    parser.add_argument("-p", help="Rules file", type=str, required=True)
+    parser.add_argument("-i", help="Input Address file", type=str, required=True)
+    parser.add_argument("-o", help="Output file", type=str, required=True)
     
     args = parser.parse_args()
     
